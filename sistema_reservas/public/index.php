@@ -1,16 +1,19 @@
 <?php
-require_once '../config/config.php';
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../auth/login.php');
+    exit();
+}
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sistema de Reserva de Salas</title>
+    <title>Sistema de Reservas</title>
 </head>
 <body>
-    <h1>Bem-vindo ao Sistema de Reserva de Salas</h1>
-    <a href="../views/salas.php">Gerenciar Salas</a> | 
-    <a href="../views/reservas.php">Gerenciar Reservas</a>
+    <h1>Bem-vindo, <?php echo $_SESSION['user_nome']; ?>!</h1>
+    <a href="../auth/logout.php">Sair</a>
+    <p><a href="../views/salas.php">Gerenciar Salas</a></p>
+    <p><a href="../views/reservas.php">Gerenciar Reservas</a></p>
 </body>
 </html>
